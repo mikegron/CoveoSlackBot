@@ -46,7 +46,9 @@ var commands = {
 var execute_command = function (hook) {
     if (!hook || !hook.text || !hook.trigger_word) {
         return { text: 'Invalid request' };
-    }    
+    }
+    
+    console.log(hook);
     
     hook.full_command_text = hook.text.substring(hook.trigger_word.length).trim();
     var index = hook.full_command_text.indexOf(" ");
