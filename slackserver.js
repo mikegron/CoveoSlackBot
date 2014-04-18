@@ -23,6 +23,9 @@ var commands = {
     },
     "!noice": function(hook) {
         return hook.user_name + " thinks " + hook.command_text + " is noice!";
+    },
+    "!wat" : function(hook) { 
+        return hook.user_name " hurts itself in its confusion!";
     }
 };
 
