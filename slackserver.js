@@ -28,6 +28,9 @@ trigger_word=googlebot:
  */
 
 var commands = {
+	"help" : function (hook, callback) {
+		callback("Valid commands: " + Object.keys(commands).join(", "));
+	},
 	"yes" : function (hook, callback) {
 		callback('Good point, ' + hook.user_name);
 	},
@@ -39,9 +42,6 @@ var commands = {
 	},
 	"wat" : function (hook, callback) {
 		callback(hook.user_name + " hurts itself in its confusion!");
-	},
-	"help" : function (hook, callback) {
-		callback("Valid commands: " + Object.keys(commands).join(", "));
 	},
 	"wiki" : function (hook, callback) {
 		request("http://en.wikipedia.org/w/api.php?format=json&action=opensearch&limit=2&format=json&search=" + hook.command_text, function (err, res, body) {
@@ -58,9 +58,8 @@ var commands = {
 		});
 	},
 	"slap" : function (hook, callback) {
-		callback("_Slaps " + hook.command_text + " with a large trout._")
-	};
-
+		callback("_Slaps " + hook.command_text + " with a large trout._");
+	}
 }
 
 var execute_command = function (hook, callback) {
