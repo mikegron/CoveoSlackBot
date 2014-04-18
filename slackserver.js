@@ -1,9 +1,10 @@
 var express = require("express");
 var Slack = require('node-slack');
+var bodyParser = require('body-parser');
 var slack = new Slack("coveo.slack.com","SORN4gqdTDeBL0Il4dpgcOx7");
 
 var app = express();
-app.use(express.bodyParser());
+app.use(bodyParser.json());
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function() {
     console.log("listening on " + port);
