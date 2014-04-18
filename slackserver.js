@@ -22,7 +22,7 @@ var commands = {
         return "http://targetprocess/entity/" + hook.command_text;
     },
     "!noice": function(hook) {
-        return hook.user_name + "things " + hook.command_text + " is noice!";
+        return hook.user_name + " thinks " + hook.command_text + " is noice!";
     }
 };
 
