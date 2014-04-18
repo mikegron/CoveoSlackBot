@@ -14,7 +14,8 @@ app.listen(port, function() {
 });
 
 app.post('/yesman',function(req,res) {
-
+    console.log("Received /yesman");
+    console.log(req);
     var reply = slack.respond(req.body,function(hook) {
 
         return {
