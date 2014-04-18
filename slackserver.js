@@ -30,9 +30,8 @@ var commands = {
 var execute_command = function (hook) {
 	var command = commands[hook.trigger_word];
     
-    hook.command_text = hook.text.substring(hook.trigger_word.length+1);
-    
 	if (command) {
+        hook.command_text = hook.text.substring(hook.trigger_word.length+1);
 		return command(hook);
 	} else {
 		return {
