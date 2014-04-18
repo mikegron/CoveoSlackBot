@@ -40,6 +40,9 @@ var commands = {
     },
     "wat" : function(hook) { 
         return hook.user_name + " hurts itself in its confusion!";
+    },
+    "help" : function(hook) {
+        return "Valid commands: " + Object.keys(commands).join(", ");
     }
 };
 
