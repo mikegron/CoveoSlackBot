@@ -56,7 +56,11 @@ var commands = {
 				}
 			}
 		});
-	}
+	},
+	"slap" : function (hook, callback) {
+		callback("_Slaps " + hook.command_text + " with a large trout._")
+	};
+
 }
 
 var execute_command = function (hook, callback) {
