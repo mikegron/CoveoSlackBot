@@ -1,7 +1,5 @@
 var express = require("express");
-var Slack = require('node-slack');
 var bodyParser = require('body-parser');
-var slack = new Slack("coveo.slack.com", "NOT_USED");
 
 var app = express();
 app.use(bodyParser());
