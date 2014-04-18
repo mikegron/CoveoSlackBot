@@ -16,14 +16,13 @@ app.get("/", function (req, res) {
 
 var commands = {
 	"!yes" : function (hook) {
-		return {
-			text : 'Good point, ' + hook.user_name
-		};
+		return 'Good point, ' + hook.user_name;
 	},
     "!tp" : function(hook) {
-        return {
-            text : "http://targetprocess/entity/" + hook.command_text
-        };
+        return "http://targetprocess/entity/" + hook.command_text;
+    },
+    "!noice": function(hook) {
+        return hook.user_name + "things " + hook.command_text + " is noice!";
     }
 };
 
@@ -32,7 +31,7 @@ var execute_command = function (hook) {
     
 	if (command) {
         hook.command_text = hook.text.substring(hook.trigger_word.length+1);
-		return command(hook);
+		return { text : command(hook) };
 	} else {
 		return {
 			text : 'Unknown command "' + hook.trigger_word + '".'
