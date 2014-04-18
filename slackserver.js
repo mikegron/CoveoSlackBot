@@ -57,7 +57,7 @@ var execute_command = function (hook) {
         hook.command_name = hook.full_command_text.substring(0, index)
         hook.command_text = hook.full_command_text.substring(index+1);
     } else {
-        hook.command_text = hook.full_command_text;
+        hook.command_name = hook.full_command_text;
     }
     
 	var command = commands[hook.command_name];
