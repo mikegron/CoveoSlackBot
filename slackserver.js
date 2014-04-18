@@ -59,7 +59,10 @@ var commands = {
 	},
 	"slap" : function (hook, callback) {
 		callback(":hand: _slaps " + hook.command_text + " with a large trout._ :fish:");
-	}
+	},
+    "eval" : function(hook, callback) {
+        callback("" + eval(hook.command_text));
+    }
 }
 
 var execute_command = function (hook, callback) {
