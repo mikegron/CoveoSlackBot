@@ -55,7 +55,6 @@ var execute_command = function (hook) {
     
     hook.full_command_text = hook.text.substring(hook.trigger_word.length).trim();
     var index = hook.full_command_text.indexOf(" ");
-    console.log(hook.full_command_text);
     if (index !== -1) {
         hook.command_name = hook.full_command_text.substring(0, index)
         hook.command_text = hook.full_command_text.substring(index+1);
