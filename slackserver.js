@@ -4,7 +4,7 @@ var bodyParser = require('body-parser');
 var slack = new Slack("coveo.slack.com", "NOT_USED");
 
 var app = express();
-app.use(bodyParser.json());
+app.use(bodyParser());
 var port = Number(process.env.PORT || 5000);
 app.listen(port, function () {
 	console.log("listening on " + port);
@@ -41,8 +41,8 @@ var execute_command = function (hook) {
 }
 
 app.post('/', function (req, res) {
-    console.log("REQUEST ", req);
-    console.log("BODY ", req.body);
+    console.log("Content-type ", req.get('Content-Type'));
+    console.log("Body ", req.body);
 
 	hook = req.body;
 	reply = execute_command(hook);
