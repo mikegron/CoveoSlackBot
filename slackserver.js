@@ -60,9 +60,9 @@ var commands = {
 	"slap" : function (hook, callback) {
 		callback(":hand: _slaps " + hook.command_text + " with a large trout._ :fish:");
 	},
-    "eval" : function(hook, callback) {
-        callback("" + eval(hook.command_text));
-    }
+	"eval" : function (hook, callback) {
+		callback("" + eval(hook.command_text));
+	}
 }
 
 var execute_command = function (hook, callback) {
@@ -101,7 +101,14 @@ var execute_command = function (hook, callback) {
 
 app.post('/', function (req, res) {
 	hook = req.body;
-	execute_command(hook, function (result) {
-		res.json(result);
-	});
+	try {
+		execute_command(hook, function (result) {
+			res.json(result);
+		});
+	} catch (err) {
+        console.log(err);
+		res.json({
+			text : "Error."
+		});
+	}
 });
