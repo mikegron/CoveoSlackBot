@@ -58,7 +58,7 @@ var commands = {
 		});
 	},
 	"slap" : function (hook, callback) {
-		callback("_slaps " + hook.command_text + " with a large trout._");
+		callback(":hand: _slaps " + hook.command_text + " with a large trout._ :fish:");
 	}
 }
 
