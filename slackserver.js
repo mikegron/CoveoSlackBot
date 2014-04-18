@@ -28,6 +28,8 @@ var commands = {
 };
 
 var execute_command = function (hook) {
+    console.log("Executing hook:");
+    console.log(hook);
 	var command = commands[hook.trigger_word];
     
 	if (command) {
@@ -41,11 +43,7 @@ var execute_command = function (hook) {
 }
 
 app.post('/', function (req, res) {
-	console.log(req);
-
 	hook = req.body;
-
 	reply = execute_command(hook);
-
 	res.json(reply);
 });
