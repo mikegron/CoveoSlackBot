@@ -1,6 +1,6 @@
 var express = require("express");
 var Slack = require('node-slack');
-var slack = new Slack("coveo.slack.com","");
+var slack = new Slack("coveo.slack.com","SORN4gqdTDeBL0Il4dpgcOx7");
 
 var app = express();
 
