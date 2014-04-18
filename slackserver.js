@@ -1,5 +1,6 @@
 var express = require("express");
 var bodyParser = require('body-parser');
+var request = require("request");
 
 var app = express();
 app.use(bodyParser());
@@ -24,55 +25,77 @@ user_id=U2147483697
 user_name=Steve
 text=googlebot: What is the air-speed velocity of an unladen swallow?
 trigger_word=googlebot:
-*/
+ */
 
 var commands = {
-	"yes" : function (hook) {
-		return 'Good point, ' + hook.user_name;
+	"yes" : function (hook, callback) {
+		callback('Good point, ' + hook.user_name);
 	},
-    "tp" : function(hook) {
-        return "http://targetprocess/entity/" + hook.command_text;
-    },
-    "noice": function(hook) {
-        return hook.user_name + " thinks " + hook.command_text + " is noice!";
-    },
-    "wat" : function(hook) { 
-        return hook.user_name + " hurts itself in its confusion!";
-    },
-    "help" : function(hook) {
-        return "Valid commands: " + Object.keys(commands).join(", ");
-    }
-};
+	"tp" : function (hook, callback) {
+		callback("http://targetprocess/entity/" + hook.command_text);
+	},
+	"noice" : function (hook, callback) {
+		callback(hook.user_name + " thinks " + hook.command_text + " is noice!");
+	},
+	"wat" : function (hook, callback) {
+		callback(hook.user_name + " hurts itself in its confusion!");
+	},
+	"help" : function (hook, callback) {
+		callback("Valid commands: " + Object.keys(commands).join(", "));
+	},
+	"wiki" : function (hook, callback) {
+		request("http://en.wikipedia.org/w/api.php?format=json&action=opensearch&limit=2&format=json&search=" + hook.command_text, function (err, res, body) {
+			if (err) {
+				result.text = "Error " + err;
+			} else {
+				result = JSON.parse(body)[1][0];
+				if (result) {
+					callback("https://en.wikipedia.org/wiki/" + encodeURIComponent(result));
+				} else {
+					callback("No wiki article on " + hook.command_text);
+				}
+			}
+		});
+	}
+}
 
-var execute_command = function (hook) {
-    if (!hook || !hook.text || !hook.trigger_word) {
-        return { text: 'Invalid request' };
-    }
-    
-    console.log(hook);
-    
-    hook.full_command_text = hook.text.substring(hook.trigger_word.length).trim();
-    var index = hook.full_command_text.indexOf(" ");
-    if (index !== -1) {
-        hook.command_name = hook.full_command_text.substring(0, index)
-        hook.command_text = hook.full_command_text.substring(index+1);
-    } else {
-        hook.command_name = hook.full_command_text;
-    }
-    
-	var command = commands[hook.command_name];
-    
-	if (command) {
-		return { text : command(hook) };
-	} else {
+var execute_command = function (hook, callback) {
+	if (!hook || !hook.text || !hook.trigger_word) {
 		return {
-			text : 'Unknown command "' + hook.command_name + '".'
+			text : 'Invalid request'
 		};
+	}
+
+	console.log(hook);
+
+	hook.full_command_text = hook.text.substring(hook.trigger_word.length).trim();
+	var index = hook.full_command_text.indexOf(" ");
+	if (index !== -1) {
+		hook.command_name = hook.full_command_text.substring(0, index)
+			hook.command_text = hook.full_command_text.substring(index + 1);
+	} else {
+		hook.command_name = hook.full_command_text;
+	}
+
+	var command = commands[hook.command_name];
+
+	if (command) {
+		var result = {};
+		command(hook, function (result_text) {
+			callback({
+				text : result_text
+			});
+		});
+	} else {
+		callback({
+			text : 'Unknown command "' + hook.command_name + '".'
+		});
 	}
 }
 
 app.post('/', function (req, res) {
 	hook = req.body;
-	reply = execute_command(hook);
-	res.json(reply);
+	execute_command(hook, function (result) {
+		res.json(result);
+	});
 });
