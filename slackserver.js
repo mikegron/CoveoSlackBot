@@ -38,7 +38,7 @@ var commands = {
 		callback("http://targetprocess/entity/" + hook.command_text);
 	},
 	"noice" : function (hook, callback) {
-		callback(hook.user_name + " thinks " + hook.command_text + " is noice!");
+		callback(hook.user_name + " thinks " + (hook.command_text ? hook.command_text : "gsimard") + " is noice!");
 	},
 	"wat" : function (hook, callback) {
 		callback(hook.user_name + " hurts itself in its confusion!");
@@ -58,7 +58,7 @@ var commands = {
 		});
 	},
 	"slap" : function (hook, callback) {
-		callback("_Slaps " + hook.command_text + " with a large trout._");
+		callback("_slaps " + hook.command_text + " with a large trout._");
 	}
 }
 
