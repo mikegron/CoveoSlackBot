@@ -46,7 +46,7 @@ var commands = {
 	"wiki" : function (hook, callback) {
 		request("http://en.wikipedia.org/w/api.php?format=json&action=opensearch&limit=2&format=json&search=" + hook.command_text, function (err, res, body) {
 			if (err) {
-				result.text = "Error " + err;
+				callback("Error " + err);
 			} else {
 				result = JSON.parse(body)[1][0];
 				if (result) {
