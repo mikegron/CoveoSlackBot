@@ -67,9 +67,9 @@ var commands = {
 
 var execute_command = function (hook, callback) {
 	if (!hook || !hook.text || !hook.trigger_word) {
-		return {
+		callback({
 			text : 'Invalid request'
-		};
+		});
 	}
 
 	console.log(hook);
