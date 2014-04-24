@@ -2,6 +2,9 @@ var express = require("express");
 var bodyParser = require('body-parser');
 var request = require("request");
 
+var rockpaperscissor = require("./rockpaperscissor.js");
+var players = {};
+
 var app = express();
 app.use(bodyParser());
 var port = Number(process.env.PORT || 5000);
@@ -62,6 +65,18 @@ var commands = {
 	},
 	"eval" : function (hook, callback) {
 		callback("" + eval(hook.command_text));
+	},
+	"emails" : function (hook, callback) {
+		callback("http://ces/js#q=" + hook.command_text + "&t=Emails");
+	},
+	"rdwiki" : function (hook, callback) {
+		callback("http://ces/js#q=" + hook.command_text + "&t=RDWIKI");
+	},
+	"coveodoc" : function (hook, callback) {
+		callback("https://developers.coveo.com/dosearchsite.action#q=" + hook.command_text);
+	},
+	"play" : function (hook, callback) {
+		callback(rockpaperscissor.play(hook,players))
 	}
 }
 
@@ -71,8 +86,6 @@ var execute_command = function (hook, callback) {
 			text : 'Invalid request'
 		};
 	}
-
-	console.log(hook);
 
 	hook.full_command_text = hook.text.substring(hook.trigger_word.length).trim();
 	var index = hook.full_command_text.indexOf(" ");
@@ -106,7 +119,6 @@ app.post('/', function (req, res) {
 			res.json(result);
 		});
 	} catch (err) {
-        console.log(err);
 		res.json({
 			text : "Error."
 		});
