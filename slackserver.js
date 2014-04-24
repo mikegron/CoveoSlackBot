@@ -43,6 +43,19 @@ var commands = {
 	"wat" : function (hook, callback) {
 		callback(hook.user_name + " hurts itself in its confusion!");
 	},
+    "img" : function (hook, callback) {
+        request("http://" + hook.command_text + ".jpg.to", function (err, res, body) {
+			if (err || res.statusCode != 200) {
+				callback("Error " + err);
+			} else {
+                if (body.length < 1000) {
+                    callback(body.substring(body.indexOf('src=\"')+'src=\"'.length, body.lastIndexOf('"')));
+                } else {
+                    callback("Nothing found.");
+                }
+            }
+        });
+    },
 	"wiki" : function (hook, callback) {
 		request("http://en.wikipedia.org/w/api.php?format=json&action=opensearch&limit=2&format=json&search=" + hook.command_text, function (err, res, body) {
 			if (err) {
