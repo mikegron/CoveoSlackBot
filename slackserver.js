@@ -44,7 +44,7 @@ var commands = {
 		callback(hook.user_name + " hurts itself in its confusion!");
 	},
     "img" : function (hook, callback) {
-        request("http://" + hook.command_text + ".jpg.to", function (err, res, body) {
+        request("http://" + hook.command_text.replace(" ", "") + ".jpg.to", function (err, res, body) {
 			if (err || res.statusCode != 200) {
 				callback("Error " + err);
 			} else {
