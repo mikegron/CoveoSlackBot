@@ -11,6 +11,7 @@ var emails = require("./commands/emails.js");
 var rdwiki = require("./commands/rdwiki.js");
 var coveodoc = require("./commands/coveodoc.js");
 var play = require("./commands/play.js");
+var img = require("./commands/img.js");
 
 var app = express();
 app.use(bodyParser());
@@ -58,7 +59,8 @@ trigger_word=googlebot:
   emails : emails.def,
   rdwiki: rdwiki.def,
   coveodoc : coveodoc.def,
-  play : play.def
+  play : play.def,
+  img : img.def
 }
 
 var execute_command = function (hook, callback) {
