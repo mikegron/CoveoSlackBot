@@ -80,11 +80,11 @@ var execute_command = function (hook, callback) {
 		hook.command_name = hook.full_command_text;
 	}
 
-	var command = commands[hook.command_name].exec;
+	var command = commands[hook.command_name];
 
 	if (command) {
 		var result = {};
-		command(hook, function (result_text) {
+		command.exec(hook, function (result_text) {
 			callback({
 				text : result_text
 			});
