@@ -1,9 +1,16 @@
 var express = require("express");
 var bodyParser = require('body-parser');
-var request = require("request");
 
-var rockpaperscissor = require("./rockpaperscissor.js");
-var players = {};
+var yes = require("./commands/yes.js");
+var noice = require("./commands/noice.js");
+var tp = require("./commands/tp.js");
+var wat = require("./commands/wat.js");
+var wiki = require("./commands/wiki.js");
+var slap = require("./commands/slap.js");
+var emails = require("./commands/emails.js");
+var rdwiki = require("./commands/rdwiki.js");
+var coveodoc = require("./commands/coveodoc.js");
+var play = require("./commands/play.js");
 
 var app = express();
 app.use(bodyParser());
@@ -15,7 +22,6 @@ app.listen(port, function () {
 app.get("/", function (req, res) {
 	res.send("Slack bot online");
 });
-
 /*
 hook contains the following:
 
@@ -29,55 +35,30 @@ user_name=Steve
 text=googlebot: What is the air-speed velocity of an unladen swallow?
 trigger_word=googlebot:
  */
-
-var commands = {
-	"help" : function (hook, callback) {
-		callback("Valid commands: " + Object.keys(commands).join(", "));
-	},
-	"yes" : function (hook, callback) {
-		callback('Good point, ' + hook.user_name);
-	},
-	"tp" : function (hook, callback) {
-		callback("http://targetprocess/entity/" + hook.command_text);
-	},
-	"noice" : function (hook, callback) {
-		callback(hook.user_name + " thinks " + (hook.command_text ? hook.command_text : "gsimard") + " is noice!");
-	},
-	"wat" : function (hook, callback) {
-		callback(hook.user_name + " hurts itself in its confusion!");
-	},
-	"wiki" : function (hook, callback) {
-		request("http://en.wikipedia.org/w/api.php?format=json&action=opensearch&limit=2&format=json&search=" + hook.command_text, function (err, res, body) {
-			if (err) {
-				result.text = "Error " + err;
-			} else {
-				result = JSON.parse(body)[1][0];
-				if (result) {
-					callback("https://en.wikipedia.org/wiki/" + encodeURIComponent(result));
-				} else {
-					callback("No wiki article on " + hook.command_text);
-				}
-			}
-		});
-	},
-	"slap" : function (hook, callback) {
-		callback(":hand: _slaps " + hook.command_text + " with a large trout._ :fish:");
-	},
-	"eval" : function (hook, callback) {
-		callback("" + eval(hook.command_text));
-	},
-	"emails" : function (hook, callback) {
-		callback("http://ces/js#q=" + hook.command_text + "&t=Emails");
-	},
-	"rdwiki" : function (hook, callback) {
-		callback("http://ces/js#q=" + hook.command_text + "&t=RDWIKI");
-	},
-	"coveodoc" : function (hook, callback) {
-		callback("https://developers.coveo.com/dosearchsite.action#q=" + hook.command_text);
-	},
-	"play" : function (hook, callback) {
-		callback(rockpaperscissor.play(hook,players))
-	}
+ var commands = {
+  help : {
+    exec : function (hook, callback) {
+      if(hook.command_text && commands[hook.command_text]) {
+        commands[hook.command_text].help(callback)
+      } else {
+        callback("Valid commands: " + Object.keys(commands).join(", ") + " . To display help about a particular command type !help @command_name");
+      }
+    },
+    help : function(callback) {
+      callback("Display all available commands. Usage : !help, !help @command_name")
+    }
+  },
+  yes : yes.def,
+  tp : tp.def,
+  noice : noice.def,
+  wat : wat.def,
+  wiki : wiki.def,
+  slap : slap.def,
+  eval : eval.def,
+  emails : emails.def,
+  rdwiki: rdwiki.def,
+  coveodoc : coveodoc.def,
+  play : play.def
 }
 
 var execute_command = function (hook, callback) {
@@ -96,7 +77,7 @@ var execute_command = function (hook, callback) {
 		hook.command_name = hook.full_command_text;
 	}
 
-	var command = commands[hook.command_name];
+	var command = commands[hook.command_name].exec;
 
 	if (command) {
 		var result = {};
