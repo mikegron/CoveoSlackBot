@@ -7,6 +7,7 @@ var tp = require("./commands/tp.js");
 var wat = require("./commands/wat.js");
 var wiki = require("./commands/wiki.js");
 var slap = require("./commands/slap.js");
+var _eval = require("./commands/eval.js");
 var emails = require("./commands/emails.js");
 var rdwiki = require("./commands/rdwiki.js");
 var coveodoc = require("./commands/coveodoc.js");
@@ -55,7 +56,7 @@ trigger_word=googlebot:
   wat : wat.def,
   wiki : wiki.def,
   slap : slap.def,
-  eval : eval.def,
+  eval : _eval.def,
   emails : emails.def,
   rdwiki: rdwiki.def,
   coveodoc : coveodoc.def,
@@ -102,6 +103,7 @@ app.post('/', function (req, res) {
 			res.json(result);
 		});
 	} catch (err) {
+        console.log(err);
 		res.json({
 			text : "Error."
 		});
