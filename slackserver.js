@@ -13,7 +13,7 @@ var rdwiki = require("./commands/rdwiki.js");
 var coveodoc = require("./commands/coveodoc.js");
 var play = require("./commands/play.js");
 var img = require("./commands/img.js");
-var used = require("./commands/used.js");
+var use = require("./commands/use.js");
 
 var app = express();
 app.use(bodyParser());
@@ -63,7 +63,7 @@ trigger_word=googlebot:
   coveodoc : coveodoc.def,
   play : play.def,
   img : img.def,
-  used : used.def
+  use : use.def
 }
 
 var execute_command = function (hook, callback) {
