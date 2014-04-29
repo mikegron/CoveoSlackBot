@@ -64,7 +64,7 @@ trigger_word=googlebot:
   coveodoc : coveodoc.def,
   play : play.def,
   img : img.def,
-  use : use.def
+  use : use.def,
   ascii: ascii.def
 }
 
