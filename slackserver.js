@@ -14,6 +14,7 @@ var coveodoc = require("./commands/coveodoc.js");
 var play = require("./commands/play.js");
 var img = require("./commands/img.js");
 var ascii = require("./commands/ascii.js");
+var use = require("./commands/use.js");
 
 var app = express();
 app.use(bodyParser());
@@ -63,6 +64,7 @@ trigger_word=googlebot:
   coveodoc : coveodoc.def,
   play : play.def,
   img : img.def,
+  use : use.def
   ascii: ascii.def
 }
 

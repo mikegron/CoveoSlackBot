@@ -1,0 +1,10 @@
+language: node_js
+node_js:
+- '0.11'
+deploy:
+  provider: heroku
+  api_key:
+    secure: Mk8aC8NaN+1LbT42xijefehIZQtq2k6H6kSOA/3Ml3+rmQJJYKHJwrX+T5plI5rwgiNN9EZ3HjSVLzjHiRVINSSfpUFGL+MD6gfASxJrNb04LBOHCo4xA4Pnmq33U+krUJzXPT9ppxUGCyuabxKc+f0615l2iF2Dc44r9HF7HtU=
+  app: CoveoSlackBot
+  on:
+    repo: GuiSim/CoveoSlackBot
