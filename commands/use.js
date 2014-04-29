@@ -2,13 +2,13 @@ module.exports = {
     def: {
         exec : function (hook, callback) {
             var splited = hook.command_text.split(" ");
-            if(splited.length != 2) {
+            if(splited.length < 2) {
                 callback("Error: Must specify an attack and a target.");
             }
             
             // Extract given args
-            var attack = splited[0];
-            var target = splited[1];
+            var target = splited[splited.length-1];
+            var attack = hook.command_text.split(target)[0];
             var back = hook.user_name + " used " + attack + " on " + target + "! ";
             
             // Change of success
