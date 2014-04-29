@@ -13,6 +13,7 @@ var rdwiki = require("./commands/rdwiki.js");
 var coveodoc = require("./commands/coveodoc.js");
 var play = require("./commands/play.js");
 var img = require("./commands/img.js");
+var ascii = require("./commands/ascii.js");
 
 var app = express();
 app.use(bodyParser());
@@ -61,7 +62,8 @@ trigger_word=googlebot:
   rdwiki: rdwiki.def,
   coveodoc : coveodoc.def,
   play : play.def,
-  img : img.def
+  img : img.def,
+  ascii: ascii.def
 }
 
 var execute_command = function (hook, callback) {
@@ -84,10 +86,14 @@ var execute_command = function (hook, callback) {
 
 	if (command) {
 		var result = {};
-		command.exec(hook, function (result_text) {
-			callback({
-				text : result_text
-			});
+		command.exec(hook, function (result) {
+      if (typeof result == "object") {
+        callback(result)
+      } else {
+				callback({
+					text : result
+				});
+			}
 		});
 	} else {
 		callback({
