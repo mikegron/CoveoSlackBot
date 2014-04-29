@@ -1,3 +1,7 @@
+hash = function(s){
+  return s.split("").reduce(function(a,b){a=((a<<5)-a)+b.charCodeAt(0);return a&a},0);              
+}
+
 module.exports = {
     def: {
         exec : function (hook, callback) {
@@ -11,9 +15,11 @@ module.exports = {
             var attack = hook.command_text.split(target)[0];
             var back = hook.user_name + " used " + attack + " on " + target + "! ";
             
-            // Change of success
-            var random = Math.random();
-            if(random >= 0.60) {
+            // Use a hash so a given command always results in the same outcome.
+            var hash = hash(hook.command_text);
+            var super_effective = (hash % 7 == 0); // Use 3 so super effective is less frequent than not very effective
+            
+            if(super_effective) {
                 back += "It's super effective :collision:";
             } else {
                 back += "It's not very effective... :zzz:";
