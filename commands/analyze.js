@@ -10,10 +10,10 @@ module.exports = {
             if(result.score === 0) {
                 emotion = ':neutral_face:';
             } else if (result.score < 0) {
+                emotion = ':cry:';
                 if (result.score > -2) {
                     emotion = ':disappointed:';
                 }
-                emotion = ':cry:';
             } else if (result.score < 2) {
                 emotion = ':smiley:';
             }
