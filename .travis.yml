@@ -5,6 +5,6 @@ deploy:
   provider: heroku
   api_key:
     secure: Qm+ePh45fOlvyV47skKB4udLAsTryaRP+Rh3ojSotc7IWfoIB3TrzZdL0OkJl+Hipc564iNKdmlujsNME8vdFt9Vd1MyYOGM+ZiH1RIabOZgVMsHYI+MIDS6oxzo4JYLxRxgTwcimRd7Y1UpMGAibEKN97RHiVemFyB6/Z9qfac=
-  app: CoveoSlackBot
+  app: coveoslackbot
   on:
     repo: GuiSim/CoveoSlackBot
