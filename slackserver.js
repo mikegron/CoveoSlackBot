@@ -15,6 +15,7 @@ var play = require("./commands/play.js");
 var img = require("./commands/img.js");
 var ascii = require("./commands/ascii.js");
 var use = require("./commands/use.js");
+var bible = require("./commands/bible.js");
 
 var app = express();
 app.use(bodyParser());
@@ -65,7 +66,8 @@ trigger_word=googlebot:
   play : play.def,
   img : img.def,
   use : use.def,
-  ascii: ascii.def
+  ascii: ascii.def,
+  bible: bible.def
 }
 
 var execute_command = function (hook, callback) {
