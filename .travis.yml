@@ -4,7 +4,7 @@ node_js:
 deploy:
   provider: heroku
   api_key:
-    secure: Mk8aC8NaN+1LbT42xijefehIZQtq2k6H6kSOA/3Ml3+rmQJJYKHJwrX+T5plI5rwgiNN9EZ3HjSVLzjHiRVINSSfpUFGL+MD6gfASxJrNb04LBOHCo4xA4Pnmq33U+krUJzXPT9ppxUGCyuabxKc+f0615l2iF2Dc44r9HF7HtU=
+    secure: Qm+ePh45fOlvyV47skKB4udLAsTryaRP+Rh3ojSotc7IWfoIB3TrzZdL0OkJl+Hipc564iNKdmlujsNME8vdFt9Vd1MyYOGM+ZiH1RIabOZgVMsHYI+MIDS6oxzo4JYLxRxgTwcimRd7Y1UpMGAibEKN97RHiVemFyB6/Z9qfac=
   app: CoveoSlackBot
   on:
     repo: GuiSim/CoveoSlackBot
