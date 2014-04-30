@@ -16,6 +16,7 @@ var img = require("./commands/img.js");
 var ascii = require("./commands/ascii.js");
 var use = require("./commands/use.js");
 var bible = require("./commands/bible.js");
+var analyze = require("./commands/analyze.js");
 
 var app = express();
 app.use(bodyParser());
@@ -67,7 +68,8 @@ trigger_word=googlebot:
   img : img.def,
   use : use.def,
   ascii: ascii.def,
-  bible: bible.def
+  bible: bible.def,
+  analyze: analyze.def
 }
 
 var execute_command = function (hook, callback) {
