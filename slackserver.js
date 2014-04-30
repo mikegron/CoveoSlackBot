@@ -17,6 +17,7 @@ var ascii = require("./commands/ascii.js");
 var use = require("./commands/use.js");
 var bible = require("./commands/bible.js");
 var analyze = require("./commands/analyze.js");
+var youtube = require("./commands/youtube.js");
 
 var app = express();
 app.use(bodyParser());
@@ -69,7 +70,8 @@ trigger_word=googlebot:
   use : use.def,
   ascii: ascii.def,
   bible: bible.def,
-  analyze: analyze.def
+  analyze: analyze.def,
+  youtube: youtube.def
 }
 
 var execute_command = function (hook, callback) {
