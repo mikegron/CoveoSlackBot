@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/GuiSim/CoveoSlackBot.svg)](https://travis-ci.org/GuiSim/CoveoSlackBot)
+
 CoveoSlackBot
 =============
 

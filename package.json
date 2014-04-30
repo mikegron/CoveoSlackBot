@@ -1,14 +1,25 @@
 {
-  "name": "slackserver",
+  "name": "CoveoSlackBot",
   "version": "1.0.0",
-  "description": "Slack bot",
+  "description": "Slack Bot",
   "main": "slackserver.js",
+  "dependencies": {
+    "body-parser": "~1.0.2",
+    "express": "~4.0.0",
+    "sentiment": "~1.0.0-alpha",
+    "request": "~2.34.0"
+  },
+  "devDependencies": {},
   "scripts": {
     "test": ""
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/GuiSim/CoveoSlackBot"
+  },
   "author": "guisim@gmail.com",
   "license": "MIT",
-  "dependencies": {
-    "sentiment": "~1.0.0-alpha"
+  "bugs": {
+    "url": "https://github.com/GuiSim/CoveoSlackBot/issues"
   }
 }
