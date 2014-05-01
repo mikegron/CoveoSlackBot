@@ -4,7 +4,7 @@
         wtfThatCodeIsUgly(hook, callback, commands)
     },
     help: function(callback) {
-        callback('Display an emoji according to the emotion of the text. Usage !analyze @text. (e.g. !analyze This is awesome dude!');
+        callback('Result of command is piped into the next one. usage : !command1 >> !command2. For example : !bible John 1:1 >> !ascii >> !analyze');
     }
   }
 }
