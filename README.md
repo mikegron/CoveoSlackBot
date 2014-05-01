@@ -3,6 +3,8 @@
 CoveoSlackBot
 =============
 
-Tiny slack.com bot used at Coveo
+Tiny node.js bot for slack.com used at Coveo
+
+Run it with `node slackserver.js`.
 
 Use `!help` for a list of commands.
