@@ -4,7 +4,7 @@
         wtfThatCodeIsUgly(hook, callback, commands)
     },
     help: function(callback) {
-        callback('Result of command is piped into the next one. usage : !command1 >> !command2. For example : !bible John 1:1 >> !ascii >> !analyze');
+        callback('Result of command is piped into the next one. usage : !combine command1 >> !command2. For example : !combine !bible John 1:1 >> !ascii >> !analyze');
     }
   }
 }
