@@ -35,7 +35,7 @@ var wtfThatCodeIsUgly = function(hook, callback, commands) {
 }
 
 var splitCommands = function(input) {
-   return input.split(">>"); 
+   return input.split("&gt;&gt;"); 
 }
 
 var getCommandFromInput = function(input, originalHook) {
