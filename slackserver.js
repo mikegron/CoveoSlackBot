@@ -17,6 +17,7 @@ var ascii = require("./commands/ascii.js");
 var use = require("./commands/use.js");
 var bible = require("./commands/bible.js");
 var analyze = require("./commands/analyze.js");
+var combine = require("./commands/combine.js");
 var youtube = require("./commands/youtube.js");
 
 var app = express();
@@ -71,6 +72,7 @@ trigger_word=googlebot:
   ascii: ascii.def,
   bible: bible.def,
   analyze: analyze.def,
+  combine: combine.def,
   youtube: youtube.def
 }
 
@@ -102,7 +104,7 @@ var execute_command = function (hook, callback) {
 					text : result
 				});
 			}
-		});
+		}, commands);
 	} else {
 		callback({
 			text : 'Unknown command "' + hook.command_name + '".'
